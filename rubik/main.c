@@ -44,7 +44,7 @@ int main(int ac, char **av) {
     for (size_t i = 0; instructions[i]; i++) {
         if (get_action(instructions[i]) == INVALID) {
             free_tab(instructions);
-            fprintf(stderr, "Error: Arg\n");
+            fprintf(stderr, "Error: Invalid action\n");
             return 1;
         }
     }
@@ -55,6 +55,8 @@ int main(int ac, char **av) {
     scramble_cube(cube, instructions);
     puts("");
     print_cube(cube);
+    printf("SOLVED : %d\n", is_solved(cube));
+    printf("SOLVED : %d\n", is_phase_1_good(cube));    
 
     free_tab(instructions);
     return 0;

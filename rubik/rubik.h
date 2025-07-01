@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define CUBE uint8_t cube[6][3][3]
 #define INVALID 255
@@ -57,3 +58,6 @@ void            print_cube(CUBE);
 
 void            handle_action(CUBE, uint8_t action);
 void            swap_layer(CUBE, t_rotate rot);
+
+bool            is_solved(CUBE);
+bool            is_phase_1_good(CUBE);
