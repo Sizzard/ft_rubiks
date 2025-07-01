@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "rubik.h": "c",
+        "stdint.h": "c",
+        "stdio.h": "c",
+        "stddef.h": "c",
+        "string.h": "c"
+    }
+}
