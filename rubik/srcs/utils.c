@@ -10,12 +10,12 @@ void free_tab(char **tab) {
 }
 
 void init_colors() {
-    strcpy(g_colors[0], "\x1B[0m");
-    strcpy(g_colors[1], "\x1B[32m");
-    strcpy(g_colors[2], "\x1B[31m");
-    strcpy(g_colors[3], "\x1B[34m");
-    strcpy(g_colors[4], "\x1B[38;5;208m");
-    strcpy(g_colors[5], "\x1B[38;5;226m");
+    strcpy(g_colors[0], "\x1B[38;5;226m"); // Jaune
+    strcpy(g_colors[1], "\x1B[34m"); // Bleu
+    strcpy(g_colors[2], "\x1B[31m"); // Rouge
+    strcpy(g_colors[3], "\x1B[32m"); // Vert
+    strcpy(g_colors[4], "\x1B[38;5;208m"); // Orange
+    strcpy(g_colors[5], "\x1B[0m"); // Blanc
 }
 
 void init_actions() {
@@ -52,10 +52,12 @@ uint8_t get_action(char *str) {
 }
 
 void init_cube(CUBE) {
+    // int i = 0;
     for (size_t face = 0; face < 6; face++) {
         for(size_t row = 0; row < 3; row++) {
             for(size_t column = 0; column < 3; column++) {
                 cube[face][row][column] = face;
+                // cube[face][row][column] = i++;                
             }
         }
     }
@@ -63,9 +65,11 @@ void init_cube(CUBE) {
 
 void print_cube(CUBE) {
     for (size_t face = 0; face < 6; face++) {
+        printf("Face : %s\n", g_colors[face]);
         for(size_t row = 0; row < 3; row++) {
             for(size_t column = 0; column < 3; column++) {
-                printf("%s ■ %s", g_colors[cube[face][row][column]], g_colors[0]);
+                printf("%s ■ %s", g_colors[cube[face][row][column]], g_colors[WHITE]);
+                // printf("%d ", cube[face][row][column]);
             }
             puts("");
         }

@@ -12,12 +12,12 @@ extern char g_colors[6][16];
 extern char g_actions[18][4];
 
 enum colors {
-    WHITE,
-    GREEN,
-    RED,
-    BLUE,
-    ORANGE,
     YELLOW,
+    BLUE,
+    RED,
+    GREEN,
+    ORANGE,
+    WHITE,
 };
 
 enum actions {
@@ -42,7 +42,7 @@ enum actions {
 };
 
 typedef struct s_rotate {
-    uint8_t face[4];
+    uint8_t face[5];
     uint8_t row[3];
     uint8_t column[3];
 }   t_rotate;
@@ -57,7 +57,9 @@ void            init_cube(CUBE);
 void            print_cube(CUBE);
 
 void            handle_action(CUBE, uint8_t action);
-void            swap_layer(CUBE, t_rotate rot);
+void            rotate_layer(CUBE, t_rotate rot);
+
+uint8_t         IDA_algorithm(CUBE);
 
 bool            is_solved(CUBE);
 bool            is_phase_1_good(CUBE);

@@ -3,13 +3,11 @@
 char g_colors[6][16];
 char g_actions[18][4];
 
-void rotate(CUBE, uint8_t action) {
-    handle_action(cube, action);
-}
-
 void scramble_cube(CUBE, char **instructions) {
     for(size_t i = 0; instructions[i]; i++) {
-        rotate(cube, get_action(instructions[i]));
+        // printf("INSTRUCTION : %s\n", instructions[i]);
+        handle_action(cube, get_action(instructions[i]));
+        // print_cube(cube);
     }
 }
 
@@ -55,8 +53,11 @@ int main(int ac, char **av) {
     scramble_cube(cube, instructions);
     puts("");
     print_cube(cube);
-    printf("SOLVED : %d\n", is_solved(cube));
-    printf("SOLVED : %d\n", is_phase_1_good(cube));    
+
+    
+    // uint8_t phase_1_moves = IDA_algorithm(cube);
+
+    // printf("phase_1_moves : %d\n", phase_1_moves);
 
     free_tab(instructions);
     return 0;
