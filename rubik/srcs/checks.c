@@ -1,19 +1,33 @@
 #include "../rubik.h"
 
-bool is_white_cross_ok(CUBE) {
-    if (cube[WHITE][0][1] == WHITE &&
-        cube[WHITE][1][0] == WHITE && 
-        cube[WHITE][1][2] == WHITE &&
-        cube[WHITE][2][1] == WHITE) {
-            return true;
+bool are_extern_layers_good(CUBE) {
+    for(size_t i = 0; i < 12; i++) {
+        if (cube.edges.orientation[i] != 0) {
+            return false;
         }
-        return false;
+    }
+    for(size_t i = 0; i < 8; i++) {
+        if (cube.corners.orientation[i] != 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
-bool is_extern_layer_good(CUBE, uint8_t face) {
-    for(size_t row = 0; row < 3; row++) {
-        for(size_t column = 0; column < 3; column++) {
-            if (cube[face][row][column] != WHITE && cube[face][row][column] != YELLOW ) {
+bool is_phase_1_good(CUBE) {
+    if (are_extern_layers_good(cube))  {
+        return true;
+    }
+    return false;
+}
+
+bool is_phase_2_good(CUBE) {
+    for(size_t i = 0; i < 12; i++) {
+        if (cube.edges.orientation[i] != 0 || cube.edges.pos[i] != i) {
+            return false;
+        }
+        if (i < 8) {
+            if (cube.corners.orientation[i] != 0 || cube.corners.pos[i] != i) {
                 return false;
             }
         }
@@ -21,22 +35,9 @@ bool is_extern_layer_good(CUBE, uint8_t face) {
     return true;
 }
 
-bool is_phase_1_good(CUBE) {
-    if (is_extern_layer_good(cube, WHITE) && is_extern_layer_good(cube, YELLOW))  {
+bool is_solved(CUBE) {
+    if (is_phase_2_good(cube)) {
         return true;
     }
     return false;
-}
-
-bool is_solved(CUBE) {
-    for (size_t face = 0; face < 6; face++) {
-        for(size_t row = 0; row < 3; row++) {
-            for(size_t column = 0; column < 3; column++) {
-                if (cube[face][row][column] != face) {
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
 }

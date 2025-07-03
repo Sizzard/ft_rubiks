@@ -1,5 +1,5 @@
 NAME = ft_rubik
-SRCS = main.c srcs/ft_split.c srcs/utils.c srcs/actions.c srcs/tables.c srcs/checks.c srcs/solver.c
+SRCS = main.c srcs/ft_split.c srcs/utils.c srcs/actions.c srcs/tables.c srcs/checks.c srcs/solver.c srcs/init.c
 OBJ = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g3
 
