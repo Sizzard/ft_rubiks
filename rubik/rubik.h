@@ -41,10 +41,13 @@ enum actions {
     D_P,
 };
 
+typedef struct s_facelet {
+    uint8_t orientation;
+    uint8_t color;
+}   t_facelet;
+
 typedef struct s_rotate {
     uint8_t face[5];
-    uint8_t row[3];
-    uint8_t column[3];
 }   t_rotate;
 
 char	        **ft_split(char const *s, char c);
@@ -57,9 +60,12 @@ void            init_cube(CUBE);
 void            print_cube(CUBE);
 
 void            handle_action(CUBE, uint8_t action);
-void            rotate_layer(CUBE, t_rotate rot);
+
+void            fill_corner_table(CUBE, uint8_t corner_table[2187]);
+
 
 uint8_t         IDA_algorithm(CUBE);
 
 bool            is_solved(CUBE);
 bool            is_phase_1_good(CUBE);
+bool            is_white_cross_ok(CUBE);

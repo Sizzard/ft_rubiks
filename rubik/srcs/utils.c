@@ -52,20 +52,23 @@ uint8_t get_action(char *str) {
 }
 
 void init_cube(CUBE) {
-    // int i = 0;
+    // int i = 1;
     for (size_t face = 0; face < 6; face++) {
         for(size_t row = 0; row < 3; row++) {
             for(size_t column = 0; column < 3; column++) {
                 cube[face][row][column] = face;
-                // cube[face][row][column] = i++;                
+                // cube[face][row][column].orientation = 0;
+                // cube[face][row][column] = i++;
             }
         }
     }
 }
 
 void print_cube(CUBE) {
+    puts("");
+    
     for (size_t face = 0; face < 6; face++) {
-        printf("Face : %s\n", g_colors[face]);
+        // printf("Face : %s\n", g_colors[face]);
         for(size_t row = 0; row < 3; row++) {
             for(size_t column = 0; column < 3; column++) {
                 printf("%s ■ %s", g_colors[cube[face][row][column]], g_colors[WHITE]);

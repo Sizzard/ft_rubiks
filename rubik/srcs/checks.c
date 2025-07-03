@@ -1,5 +1,15 @@
 #include "../rubik.h"
 
+bool is_white_cross_ok(CUBE) {
+    if (cube[WHITE][0][1] == WHITE &&
+        cube[WHITE][1][0] == WHITE && 
+        cube[WHITE][1][2] == WHITE &&
+        cube[WHITE][2][1] == WHITE) {
+            return true;
+        }
+        return false;
+}
+
 bool is_extern_layer_good(CUBE, uint8_t face) {
     for(size_t row = 0; row < 3; row++) {
         for(size_t column = 0; column < 3; column++) {

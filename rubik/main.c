@@ -21,7 +21,10 @@ void print_tab(char **tab) {
 
 int main(int ac, char **av) {
     
+    // t_facelet cube[6][3][3];
     uint8_t cube[6][3][3];
+    uint8_t corner_table[2187];
+    uint8_t slice_table[2048];
     char **instructions;
     
     init_actions();
@@ -49,9 +52,12 @@ int main(int ac, char **av) {
 
     init_colors();
     init_cube(cube);
+
+    fill_corner_table(cube, corner_table);
+    (void)slice_table;
     
     scramble_cube(cube, instructions);
-    puts("");
+
     print_cube(cube);
 
     
